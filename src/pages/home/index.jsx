@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import MainLogo from '../../assets/ifuture-logo.svg'
+import MainLogo from '../../assets/ifuture-logo-white.svg'
 import { useHistory } from "react-router-dom"
 
 const Body = styled.body`
