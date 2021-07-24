@@ -1,70 +1,36 @@
 import React from 'react'
-import styled from 'styled-components'
 import MainLogo from '../../assets/ifuture-logo-red.svg'
 import { useHistory } from "react-router-dom"
-import DisplayFlexCenter from '../../themes/flexEffect'
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
-
-const Body = styled.body`
-  height: 80vh;
-`
-const ImageContainer = styled.div`
-  ${DisplayFlexCenter}
-  margin-top: 5.5rem;
-  padding-bottom: 1.75rem;
-`
-const TitleContainer = styled.div`
-  ${DisplayFlexCenter}
-  
-  p {
-    font-size: 1rem;
-  }
-`
-const FormContainer = styled.div`
-  ${DisplayFlexCenter}
-
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  input {
-    padding: 1.1rem;
-    width: 18rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-  }
-`
-const ButtonContainer = styled.div`
-  ${DisplayFlexCenter}
-  margin-top: 0.5rem;
-`
-const Button = styled.div`
-  ${DisplayFlexCenter}
-  width: 20.5rem;
-  height: 2.625rem;
-  border-radius: 2px;
-  background-color: #e8222e;
-`
-const RegisterContainer = styled.div`
-  ${DisplayFlexCenter}
-  margin-top: 1.5rem;
-`
+import BackArrow from '../../assets/backArrow.svg'
+import {
+  Body,
+  ImageContainer,
+  TitleContainer,
+  FormContainer,
+  ButtonContainer,
+  Button,
+  NavBar
+} from "./style";
 
 export function Signup() {
-  const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
+  const { form, onChange, cleanFields } = useForm({ email: "", password: "", confirmPassword: "" })
   const history = useHistory();
 
-  const onSubmitLogin = (event) => {
+  const onSubmitSignup = (event, password, confirmPassword) => {
     event.preventDefault();
+    if (password !== confirmPassword) {
+      alert("password dont match")
+    }
     axios
       .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/login`, form
+        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/signup`, form
       )
       .then((response) => {
         localStorage.setItem("token", response.data.token)
         cleanFields()
+        console.log(response)
         // if (response.data.user.hasAddress === false) {
 
         // }
@@ -72,16 +38,31 @@ export function Signup() {
       .catch(() => { })
   }
 
+  const goBack = () => {
+    history.goBack();
+  }
+
   return (
     <Body>
+      <NavBar>
+        <img src={BackArrow} onClick={goBack}/>
+      </NavBar>
       <ImageContainer>
         <img src={MainLogo} />
       </ImageContainer>
       <TitleContainer>
-        <p>Entrar</p>
+        <p>Cadastrar</p>
       </TitleContainer>
       <FormContainer>
-        <form onSubmit={onSubmitLogin}>
+        <form onSubmit={onSubmitSignup}>
+          <input
+            name="name"
+            value={form.name}
+            onChange={onChange}
+            placeholder={"Nome e sobrenome"}
+            required
+            type="name"
+          />
           <input
             name="email"
             value={form.email}
@@ -91,6 +72,13 @@ export function Signup() {
             type="email"
           />
           <input
+            name="cpf"
+            value={form.cpf}
+            onChange={onChange}
+            placeholder={"000.000.000-00"}
+            required
+          />
+          <input
             name="password"
             value={form.password}
             onChange={onChange}
@@ -98,19 +86,21 @@ export function Signup() {
             required
             type="password"
           />
+          <input
+            name="confirm"
+            value={form.confirm}
+            onChange={onChange}
+            placeholder={"Confirme a senha anterior"}
+            required
+            type="password"
+          />
           <ButtonContainer>
             <Button>
-              <button>Entrar</button>
+              <button>Criar</button>
             </Button>
           </ButtonContainer>
         </form>
       </FormContainer>
-
-      <RegisterContainer>
-        <span>
-          Não possui cadastro? <a>Clique aqui.</a>
-        </span>
-      </RegisterContainer>
     </Body>
   )
 }
