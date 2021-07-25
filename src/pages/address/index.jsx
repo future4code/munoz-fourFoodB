@@ -14,7 +14,7 @@ import {
   NavBar
 } from "./style";
 
-export function Signup() {
+export function Address() {
   const { form, onChange, cleanFields } = useForm({ email: "", password: "", confirmPassword: "" })
   const history = useHistory();
 
@@ -46,44 +46,49 @@ export function Signup() {
   return (
     <Body>
       <NavBar>
-        <img src={BackArrow} onClick={goBack}/>
+        <img src={BackArrow} onClick={goBack} />
       </NavBar>
-      <ImageContainer>
-        <img src={MainLogo} />
-      </ImageContainer>
       <TitleContainer>
-        <p>Cadastrar</p>
+        <p>Meu endereço</p>
       </TitleContainer>
       <FormContainer>
         <form onSubmit={onSubmitSignup}>
           <input
-            name="name"
-            value={form.name}
+            name="street"
+            value={form.street}
             onChange={onChange}
-            placeholder={"Nome e sobrenome"}
+            placeholder={"Rua / Av."}
             required
             type="name"
           />
           <input
-            name="email"
-            value={form.email}
+            name="number"
+            value={form.number}
             onChange={onChange}
-            placeholder={"email@email.com"}
+            placeholder={"Número"}
             required
             type="email"
           />
           <input
-            name="cpf"
-            value={form.cpf}
+            name="neighbourhood"
+            value={form.neighbourhood}
             onChange={onChange}
-            placeholder={"000.000.000-00"}
+            placeholder={"Apto. / Bloco"}
             required
           />
           <input
-            name="password"
-            value={form.password}
+            name="city"
+            value={form.city}
             onChange={onChange}
             placeholder={"Mínimo 6 caracteres"}
+            required
+            type="password"
+          />
+          <input
+            name="confirm"
+            value={form.confirm}
+            onChange={onChange}
+            placeholder={"Confirme a senha anterior"}
             required
             type="password"
           />
@@ -106,4 +111,4 @@ export function Signup() {
   )
 }
 
-export default Signup
+export default Address
