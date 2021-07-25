@@ -2,17 +2,17 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
-import BackArrow from '../../assets/backArrow.svg'
+import Search from '../../assets/search.svg'
 import {
   Body,
   TitleContainer,
   FormContainer,
   ButtonContainer,
   Button,
-  NavBar
+  SearchContainer
 } from './style'
 
-export function Address() {
+export function Feed() {
   const { form, onChange, cleanFields } = useForm({ email: "", password: "", confirmPassword: "" })
   const history = useHistory();
 
@@ -41,12 +41,16 @@ export function Address() {
 
   return (
     <Body>
-      <NavBar>
-        <img src={BackArrow} onClick={goBack} />
-      </NavBar>
       <TitleContainer>
-        <p>Meu endereço</p>
+        <h1>Ifuture</h1>
       </TitleContainer>
+      <SearchContainer>
+        <img src={Search}></img>
+        <input
+          type="text"
+          placeholder="Restaurante"
+        />
+      </SearchContainer>
       <FormContainer>
         <form onSubmit={onSubmitSignup}>
           <input
@@ -101,4 +105,4 @@ export function Address() {
   )
 }
 
-export default Address
+export default Feed
