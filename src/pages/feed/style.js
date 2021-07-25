@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import DisplayFlexCenter from "../../themes/flexEffect"
 
-export const Body = styled.body`
+export const Body = styled.div`
   height: 80vh;
 `
 export const TitleContainer = styled.nav`
@@ -50,29 +50,17 @@ export const SearchContainer = styled.div`
     height: 1.2rem;
   }
 `
-export const FormContainer = styled.div`
-  ${DisplayFlexCenter}
-
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  input {
-    padding: 1.1rem;
-    width: 18rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-  }
-`
-export const ButtonContainer = styled.div`
-  ${DisplayFlexCenter}
-  margin-top: 0.5rem;
-`
-export const Button = styled.div`
-  ${DisplayFlexCenter}
-  width: 20.5rem;
+export const NavContainer = styled.nav`
+  display: flex;
+  align-items: center;
+  width: auto;
   height: 2.625rem;
-  border-radius: 2px;
-  background-color: #e8222e;
+  margin: 0.5rem 0 0;
+  padding: 0 0 0.75rem 1rem;
+  overflow-x: scroll;
+
+  div {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
 `
