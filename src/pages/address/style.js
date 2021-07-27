@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import DisplayFlexCenter from "../../themes/flexEffect"
 
-export const Body = styled.body`
+export const Body = styled.div`
   height: 80vh;
 `
 export const NavBar = styled.nav`

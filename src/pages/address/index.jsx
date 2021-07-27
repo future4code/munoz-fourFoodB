@@ -1,46 +1,42 @@
 import React from 'react'
-import MainLogo from '../../assets/ifuture-logo-red.svg'
-import { useHistory } from "react-router-dom"
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
 import BackArrow from '../../assets/backArrow.svg'
 import {
   Body,
-  ImageContainer,
   TitleContainer,
   FormContainer,
   ButtonContainer,
   Button,
   NavBar
-} from "./style";
+} from './style'
 
 export function Address() {
   const { form, onChange, cleanFields } = useForm({ email: "", password: "", confirmPassword: "" })
   const history = useHistory();
 
-  const onSubmitSignup = (event, password, confirmPassword) => {
+  const onSubmitSignup = (event) => {
     event.preventDefault();
-    if (password !== confirmPassword) {
-      alert("password dont match")
-    }
     axios
-      .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/signup`, form
+      .put(
+        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/address`, form,
+        {
+          headers: {
+            auth: localStorage.getItem("token")
+          }
+        }
       )
       .then((response) => {
-        localStorage.setItem("token", response.data.token)
         cleanFields()
-        addAddressHandle()
+        localStorage.setItem("token", response.data.token)
+        //funcao de ir para tela do feed
       })
       .catch(() => { })
   }
 
   const goBack = () => {
     history.goBack();
-  }
-
-  const addAddressHandle = () => {
-    history.push('/address')
   }
 
   return (
@@ -59,7 +55,6 @@ export function Address() {
             onChange={onChange}
             placeholder={"Rua / Av."}
             required
-            type="name"
           />
           <input
             name="number"
@@ -67,42 +62,37 @@ export function Address() {
             onChange={onChange}
             placeholder={"Número"}
             required
-            type="email"
+          />
+          <input
+            name="complement"
+            value={form.complement}
+            onChange={onChange}
+            placeholder={"Apto. / Bloco"}
           />
           <input
             name="neighbourhood"
             value={form.neighbourhood}
             onChange={onChange}
-            placeholder={"Apto. / Bloco"}
+            placeholder={"Bairro"}
             required
           />
           <input
             name="city"
             value={form.city}
             onChange={onChange}
-            placeholder={"Mínimo 6 caracteres"}
+            placeholder={"Cidade"}
             required
-            type="password"
           />
           <input
-            name="confirm"
-            value={form.confirm}
+            name="state"
+            value={form.state}
             onChange={onChange}
-            placeholder={"Confirme a senha anterior"}
+            placeholder={"Estado"}
             required
-            type="password"
-          />
-          <input
-            name="confirm"
-            value={form.confirm}
-            onChange={onChange}
-            placeholder={"Confirme a senha anterior"}
-            required
-            type="password"
           />
           <ButtonContainer>
             <Button>
-              <button>Criar</button>
+              <button>Salvar</button>
             </Button>
           </ButtonContainer>
         </form>
