@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Search from '../../assets/search.svg'
@@ -6,10 +6,17 @@ import {
   Body,
   TitleContainer,
   SearchContainer,
-  NavContainer
+  NavContainer,
+  CardContainer,
+  RestaurantCard,
+  MenuContainer,
+  RestaurantsContainer,
+  CardInfosContainer,
+  CardInfos
 } from './style'
 
 export function Feed() {
+  const [restaurants, setRestaurants] = useState([])
   const history = useHistory();
 
   useEffect(() => {
@@ -23,10 +30,12 @@ export function Feed() {
         }
       )
       .then((response) => {
-        console.log(response)
+        setRestaurants(response.data.restaurants)
       })
       .catch(() => { })
   }, [])
+
+  console.log(restaurants)
 
   return (
     <Body>
@@ -50,6 +59,31 @@ export function Feed() {
         <div>Brasileira</div>
         <div>Brasileira</div>
       </NavContainer>
+      <RestaurantsContainer>
+        {restaurants.map((restaurant) => (
+          <CardContainer>
+            <RestaurantCard>
+              <CardInfosContainer>
+                <img src={restaurant.logoUrl} />
+                <CardInfos>
+                  <span>{restaurant.name}</span>
+                  <div>
+                    <span>
+                      {restaurant.deliveryTime - 10} - {restaurant.deliveryTime} min
+                    </span>
+                    <span>
+                      Frete R${restaurant.shipping},00
+                    </span>
+                  </div>
+                </CardInfos>
+              </CardInfosContainer>
+            </RestaurantCard>
+          </CardContainer>
+        ))}
+      </RestaurantsContainer>
+      <MenuContainer>
+
+      </MenuContainer>
     </Body>
   )
 }
