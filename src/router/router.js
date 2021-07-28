@@ -5,6 +5,7 @@ import Login from "../pages/login"
 import Signup from "../pages/signup"
 import Address from "../pages/address"
 import Feed from "../pages/feed"
+import Restaurant from "../pages/restaurant"
 
 export const Router = () => {
   return (
@@ -24,6 +25,9 @@ export const Router = () => {
         </Route>
         <Route exact path={"/feed"}>
           <Feed />
+        </Route>
+        <Route exact path={"/restaurant/:id"}>
+          <Restaurant />
         </Route>
       </Switch>
     </BrowserRouter>

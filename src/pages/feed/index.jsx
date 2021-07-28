@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Search from '../../assets/search.svg'
+import { API_BASE } from '../../contants/API_BASE'
 import {
   Body,
   TitleContainer,
@@ -22,7 +23,7 @@ export function Feed() {
   useEffect(() => {
     axios
       .get(
-        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/restaurants`,
+        `${API_BASE}restaurants`,
         {
           headers: {
             auth: localStorage.getItem("token")
@@ -35,7 +36,9 @@ export function Feed() {
       .catch(() => { })
   }, [])
 
-  console.log(restaurants)
+  const RestaurantPageHandle = (id) => {
+    history.push(`/restaurant/${id}`)
+  }
 
   return (
     <Body>
@@ -62,7 +65,7 @@ export function Feed() {
       <RestaurantsContainer>
         {restaurants.map((restaurant) => (
           <CardContainer>
-            <RestaurantCard>
+            <RestaurantCard onClick={() => RestaurantPageHandle(restaurant.id)}>
               <CardInfosContainer>
                 <img src={restaurant.logoUrl} />
                 <CardInfos>

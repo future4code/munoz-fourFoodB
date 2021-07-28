@@ -3,6 +3,7 @@ import MainLogo from '../../assets/ifuture-logo-red.svg'
 import { useHistory } from "react-router-dom"
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
+import { API_BASE } from '../../contants/API_BASE'
 import {
   Body,
   ImageContainer,
@@ -11,7 +12,7 @@ import {
   ButtonContainer,
   Button,
   RegisterContainer
-} from "./style";
+} from "./style"
 
 export function Login() {
   const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
@@ -21,7 +22,7 @@ export function Login() {
     event.preventDefault();
     axios
       .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/login`, form
+        `${API_BASE}login`, form
       )
       .then((response) => {
         localStorage.setItem("token", response.data.token)
