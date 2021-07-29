@@ -1,7 +1,8 @@
 import React from 'react'
 import MainLogo from '../../assets/ifuture-logo-white.svg'
 import { useHistory } from "react-router-dom"
-import { Body } from "./style";
+import { Body } from "./style"
+import { API_BASE } from '../../contants/API_BASE'
 
 export function Home() {
   const history = useHistory();

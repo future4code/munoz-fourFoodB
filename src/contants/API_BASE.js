@@ -1,0 +1,1 @@
+export const API_BASE = "https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/"

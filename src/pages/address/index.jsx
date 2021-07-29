@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
 import BackArrow from '../../assets/backArrow.svg'
+import { API_BASE } from '../../contants/API_BASE'
 import {
   Body,
   TitleContainer,
@@ -20,7 +21,7 @@ export function Address() {
     event.preventDefault();
     axios
       .put(
-        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/address`, form,
+        `${API_BASE}address`, form,
         {
           headers: {
             auth: localStorage.getItem("token")

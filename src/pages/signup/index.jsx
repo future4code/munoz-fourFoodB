@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 import axios from 'axios'
 import useForm from '../../hooks/useForm'
 import BackArrow from '../../assets/backArrow.svg'
+import { API_BASE } from '../../contants/API_BASE'
 import {
   Body,
   ImageContainer,
@@ -25,7 +26,7 @@ export function Signup() {
     }
     axios
       .post(
-        `https://us-central1-missao-newton.cloudfunctions.net/fourFoodB/signup`, form
+        `${API_BASE}signup`, form
       )
       .then((response) => {
         localStorage.setItem("token", response.data.token)
