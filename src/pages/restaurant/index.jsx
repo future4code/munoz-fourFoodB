@@ -7,16 +7,12 @@ import { API_BASE } from '../../contants/API_BASE'
 import {
   Body,
   TitleContainer,
-  CardContainer,
-  RestaurantCard,
-  MenuContainer,
-  RestaurantsContainer,
-  CardInfosContainer,
-  CardInfos
+  RestaurantLogo
 } from './style'
 
 export function Restaurant() {
   const [restaurant, setRestaurant] = useState([])
+  const [products, setProducts] = useState([])
   const history = useHistory();
   const pathParams = useParams()
 
@@ -32,6 +28,7 @@ export function Restaurant() {
       )
       .then((response) => {
         setRestaurant(response.data.restaurant)
+        setProducts(response.data.restaurant.products)
       })
       .catch(() => { })
   }, [])
@@ -40,6 +37,7 @@ export function Restaurant() {
     history.push('/restaurant')
   }
 
+  console.log(products)
   console.log(restaurant)
 
   return (
@@ -47,10 +45,16 @@ export function Restaurant() {
       <TitleContainer>
         <h1>Restaurante</h1>
       </TitleContainer>
-      
-      <MenuContainer>
-
-      </MenuContainer>
+      <RestaurantLogo>
+        <img src={restaurant.logoUrl}></img>
+      </RestaurantLogo>
+      <div>
+        <h1>{restaurant.name}</h1>
+        <h1>{restaurant.category}</h1>
+        <h1>{restaurant.deliveryTime - 10} - {restaurant.deliveryTime} min</h1>
+        <h1>Frete R${restaurant.shipping},00</h1>
+        <h1>{restaurant.address}</h1>
+      </div>
     </Body>
   )
 }
