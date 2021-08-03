@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Search from '../../assets/search.svg'
 import { API_BASE } from '../../contants/API_BASE'
+import MenuNavigator from '../../components/MenuNavigator'
 import {
   Body,
   TitleContainer,
@@ -10,7 +11,6 @@ import {
   NavContainer,
   CardContainer,
   RestaurantCard,
-  MenuContainer,
   RestaurantsContainer,
   CardInfosContainer,
   CardInfos
@@ -84,9 +84,7 @@ export function Feed() {
           </CardContainer>
         ))}
       </RestaurantsContainer>
-      <MenuContainer>
-
-      </MenuContainer>
+      <MenuNavigator />
     </Body>
   )
 }
