@@ -24,7 +24,6 @@ export const MenuContainer = styled.div`
 `
 
 export function MenuNavigator() {
-
   return (
     <MenuContainer>
       <div>
