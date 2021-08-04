@@ -55,6 +55,12 @@ export function Restaurant() {
         <h1>Frete R${restaurant.shipping},00</h1>
         <h1>{restaurant.address}</h1>
       </div>
+      <div>
+        <h1>Principais</h1> 
+      </div>
+      <div>
+        <img></img>
+      </div>
     </Body>
   )
 }
