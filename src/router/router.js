@@ -7,6 +7,7 @@ import Address from "../pages/address"
 import Feed from "../pages/feed"
 import Restaurant from "../pages/restaurant"
 import Cart from "../pages/cart"
+import Profile from "../pages/profile"
 
 export const Router = () => {
   return (
@@ -32,6 +33,9 @@ export const Router = () => {
         </Route>
         <Route exact path={"/cart"}>
           <Cart />
+        </Route>
+        <Route exact path={"/profile"}>
+          <Profile />
         </Route>
       </Switch>
     </BrowserRouter>

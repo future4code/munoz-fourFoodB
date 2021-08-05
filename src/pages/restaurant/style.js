@@ -38,3 +38,52 @@ export const RestaurantLogo = styled.div`
     object-fit: contain;
   }
 `
+export const ProductsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
+export const CardContainer = styled.div`
+  width: 20.5rem;
+  height: 7.5rem;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  border: solid 1px black;
+`
+export const InfoContainer = styled.div`
+  width: 20.5rem;
+  height: 7rem;
+  border-radius: 8px;
+`
+export const ProductCards = styled.div`
+  display: flex;
+  align-items: center;
+`
+export const ImageContainer = styled.div`
+  width: 6rem;
+  height: 7rem;
+  border-radius: 8px;
+  background-color: #d8d8d8;
+
+  img {
+    width: 6rem;
+    height: 7rem;
+    object-fit: fill;
+  }
+`
+export const Teste = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.625rem;
+  height: 1.938rem;
+  border-top-left-radius: 8px 8px;
+  border-top: solid 1px black;
+  border-left: solid 1px black;
+  margin-top: 2px;
+`

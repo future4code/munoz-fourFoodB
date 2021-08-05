@@ -7,7 +7,14 @@ import { API_BASE } from '../../contants/API_BASE'
 import {
   Body,
   TitleContainer,
-  RestaurantLogo
+  RestaurantLogo,
+  ProductCards,
+  ImageContainer,
+  CardContainer,
+  ProductsContainer,
+  ButtonContainer,
+  Teste,
+  InfoContainer
 } from './style'
 
 export function Restaurant() {
@@ -15,7 +22,7 @@ export function Restaurant() {
   const [products, setProducts] = useState([])
   const history = useHistory();
   const pathParams = useParams()
-
+  
   useEffect(() => {
     axios
       .get(
@@ -38,7 +45,6 @@ export function Restaurant() {
   }
 
   console.log(products)
-  console.log(restaurant)
 
   return (
     <Body>
@@ -55,12 +61,30 @@ export function Restaurant() {
         <h1>Frete R${restaurant.shipping},00</h1>
         <h1>{restaurant.address}</h1>
       </div>
-      <div>
-        <h1>Principais</h1> 
-      </div>
-      <div>
-        <img></img>
-      </div>
+      <ProductsContainer>
+        <h1>Principais</h1>
+        {products.map((product) => {
+          return (
+            <CardContainer>
+              <ProductCards>
+                <ImageContainer>
+                  <img src={product.photoUrl}></img>
+                </ImageContainer>
+                <InfoContainer>
+                  <p>{product.name}</p>
+                  <p>{product.description}</p>
+                  <Teste>
+                    <p>{product.price}</p>
+                    <ButtonContainer>
+                      <p>Adicionar</p>
+                    </ButtonContainer>
+                  </Teste>
+                </InfoContainer>
+              </ProductCards>
+            </CardContainer>
+          )
+        })}
+      </ProductsContainer>
     </Body>
   )
 }
