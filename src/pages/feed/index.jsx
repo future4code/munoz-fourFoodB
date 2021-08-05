@@ -18,6 +18,7 @@ import {
 
 export function Feed() {
   const [restaurants, setRestaurants] = useState([])
+  const [inputSearch, setInputSearch] = useState("")
   const history = useHistory();
 
   useEffect(() => {
@@ -40,6 +41,18 @@ export function Feed() {
     history.push(`/restaurant/${id}`)
   }
 
+  const searchRestaurant = (event) => {
+    setInputSearch(event.target.value)
+  };
+
+  const filterRestaurant = restaurants.filter((restaurant) => {
+    if (restaurant.name.includes(inputSearch)) {
+      return true
+    } else {
+      return false
+    }
+  })
+
   return (
     <Body>
       <TitleContainer>
@@ -49,8 +62,10 @@ export function Feed() {
         <img src={Search}></img>
         <input
           type="text"
-          placeholder="Restaurante"
-        />
+          value={inputSearch}
+          onChange={searchRestaurant}
+          placeholder="Restaurante">
+        </input>
       </SearchContainer>
       <NavContainer>
         <div>Burger</div>
@@ -63,7 +78,7 @@ export function Feed() {
         <div>Brasileira</div>
       </NavContainer>
       <RestaurantsContainer>
-        {restaurants.map((restaurant) => (
+        {filterRestaurant.map((restaurant) => (
           <CardContainer>
             <RestaurantCard onClick={() => RestaurantPageHandle(restaurant.id)}>
               <CardInfosContainer>
