@@ -80,6 +80,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   width: 5.625rem;
   height: 1.938rem;
   border-top-left-radius: 8px 8px;

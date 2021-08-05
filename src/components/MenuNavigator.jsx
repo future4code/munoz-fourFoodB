@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import HomeSVG from '../assets/home-red.svg'
 import CartSVG from '../assets/cart.svg'
 import AvatarSVG from '../assets/avatar.svg'
+import { useHistory } from "react-router-dom"
 
 export const MenuContainer = styled.div`
   display: flex;
@@ -24,16 +25,28 @@ export const MenuContainer = styled.div`
 `
 
 export function MenuNavigator() {
+  const history = useHistory();
+
+  const goToFeed = () => {
+    history.push("/feed");
+  }
+  const goToCart = () => {
+    history.push("/cart");
+  }
+  const goToProfile = () => {
+    history.push("/profile");
+  }
+
   return (
     <MenuContainer>
       <div>
-        <img src={HomeSVG}></img>
+        <img src={HomeSVG} onClick={goToFeed}></img>
       </div>
       <div>
-        <img src={CartSVG}></img>
+        <img src={CartSVG} onClick={goToCart}></img>
       </div>
       <div>
-        <img src={AvatarSVG}></img>
+        <img src={AvatarSVG} onClick={goToProfile}></img>
       </div>
     </MenuContainer>
   )
