@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Search from '../../assets/search.svg'
 import { API_BASE } from '../../contants/API_BASE'
 import MenuNavigator from '../../components/MenuNavigator'
+import { GlobalContext } from '../../App'
 import {
   Body,
   TitleContainer,
@@ -16,7 +17,10 @@ import {
   CardInfos
 } from './style'
 
+
 export function Cart() {
+  const cartContext = useContext(GlobalContext)
+  const restaurantContext = useContext(GlobalContext)
   const [address, setAddress] = useState([])
   const history = useHistory();
 
@@ -49,6 +53,15 @@ export function Cart() {
       <div>
         <p>Endereço de entrega</p>
         <p>{address.street}, {address.number}</p>
+      </div>
+      <div>
+        {cartContext.cart.map((items) => {
+          return (
+            <div>
+              {items.name} x {items.quantity}
+            </div>
+          )
+        })}
       </div>
       <div>
         <p>Carrinho vazio</p>
