@@ -61,15 +61,17 @@ export const ProductCards = styled.div`
   align-items: center;
 `
 export const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 6rem;
   height: 7rem;
   border-radius: 8px;
   background-color: #d8d8d8;
+  overflow: hidden;
 
   img {
-    width: 6rem;
-    height: 7rem;
-    object-fit: fill;
+    height: 100%;
   }
 `
 export const Teste = styled.div`

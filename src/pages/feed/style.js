@@ -82,6 +82,7 @@ export const RestaurantCard = styled.div`
   border: 1px solid black;
   width: 20.5rem;
   height: 11.75rem;
+  overflow: hidden;
 
     img {
       width: 20.5rem;

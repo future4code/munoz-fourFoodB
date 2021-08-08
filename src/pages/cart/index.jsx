@@ -58,7 +58,7 @@ export function Cart() {
         {cartContext.cart.map((items) => {
           return (
             <div>
-              {items.name}
+              {items.name} x {items.quantity}
             </div>
           )
         })}

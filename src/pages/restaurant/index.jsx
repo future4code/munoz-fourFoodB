@@ -68,6 +68,8 @@ export function Restaurant() {
             quantity: productIncart.quantity + 1
           }
         }
+
+        return productIncart
       })
 
       cartContext.setCart(newCart)
